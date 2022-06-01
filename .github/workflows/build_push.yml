@@ -1,0 +1,56 @@
+# Build and Push Hugo site to gh-pages
+name: build-push
+
+# trigger events
+on:
+  # manually triggered
+  workflow_dispatch:
+    
+  # automatically trigger
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'content/**'
+      - 'src/**'
+    
+
+jobs:
+  
+  # Build & Push hugo site
+  hugo:
+    name: build-push
+    if: ${{ github.repository == 'sujaykumarh/blog' }}
+
+    runs-on: ubuntu-latest
+    steps:
+
+      # Pull Source Code
+      - name: ✅ Checkout Source
+        uses: actions/checkout@v2
+
+      - name: ⬇️ pull git submodules
+        run: git submodule update --init --recursive
+
+      - name: 🔨 Build Hugo Site
+        run: |
+          sh build.sh --baseUrl https://blog.sujaykumarh.com/
+
+      - name: 🚚 move dist from src to current dir
+        run: |
+          mv src/dist ./dist
+
+      - name: ℹ️ Setup files in dist
+        run: |
+          cp README.md dist/dist-readme.md
+          touch src/dist/.nojekyll
+          if [ -f "CNAME" ]; then cp CNAME src/dist/CNAME; fi
+
+      - name: 🚀 Push to gh-pages
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: gh-pages
+          FOLDER: dist
+          MESSAGE: "🔨 Build gh-pages from {target-branch} {sha}"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

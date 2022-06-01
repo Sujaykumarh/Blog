@@ -1,0 +1,195 @@
+baseURL: "https://blog.sujaykumarh.com/"
+languageCode: "en-us"
+title: "Blog | Sujaykumarh"
+
+theme: "paper"
+
+####
+## Hugo Options
+####
+
+# Disable unwanted features
+disableKinds:
+  - RSS
+  - taxonomy
+  - term
+
+disableHugoGeneratorInject: "true"
+
+
+####
+## Theme Options
+####
+
+copyright: "&copy; [Sujaykumarh](https://sujaykumarh.com/?utm_source=blog&utm_medium=footer&utm_campaign=social) |"
+
+enableInlineShortcodes: true
+enableRobotsTXT: false
+buildDrafts: true
+buildFuture: false
+buildExpired: false
+enableEmoji: true
+googleAnalytics: "G-RDJM8E8822"
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+languages:
+  en:
+    languageName: "English"
+    weight: 1
+    menu:
+      main:
+        # - name: About
+        #   url: "https://sujaykumarh.com/?utm_source=blog&utm_medium=social&utm_campaign=social"
+        #   weight: 1
+        #   target: _blank
+
+        - name: Archive
+          url: archives
+          weight: 10
+
+        # - name: Search
+        #   url: search/
+        #   weight: 10
+
+        # - name: Tags
+        #   url: tags/
+        #   weight: 10
+
+        # - name: Categories
+        #   url: categories/
+        #   weight: 10
+
+outputs:
+  home:
+    - HTML
+
+params:
+  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  description: ""
+  author: "Sujaykumarh"
+  # author: ["Me", "You"] # multiple authors
+
+  defaultTheme: dark
+  # disableThemeToggle: true
+  ShowShareButtons: false
+  ShowReadingTime: true
+  # disableSpecial1stPost: true
+  displayFullLangName: true
+
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+
+  ShowToc: false
+  TocOpen: false
+
+  # comments: false
+  images: ["papermod-cover.png"]
+
+  profileMode:
+    enabled: false
+    title: PaperMod
+    imageUrl: "#"
+    imageTitle: my image
+    # imageWidth: 120
+    # imageHeight: 120
+    buttons:
+      - name: Archives
+        url: archives
+      - name: Tags
+        url: tags
+
+  homeInfoParams:
+    Title: "About"
+    Content: >
+      Welcome to my blog.
+  socialIcons:
+    - name: website
+      url: "https://sujaykumarh.com/?utm_source=blog&utm_medium=social&utm_campaign=social"
+    - name: github
+      url: "https://github.com/sujaykumarh"
+    - name: twitter
+      url: "https://twitter.com/sujaykumarh"
+    - name: KoFi
+      url: "https://ko-fi.com/sujaykumarh"
+    - name: buymeacoffee
+      url: "https://buymeacoffee.com/sujaykumarh"
+
+  # editPost:
+  #   URL: "https://github.com/sujaykumarh/blog/tree/main/content"
+  #   Text: "Suggest Changes" # edit text
+  #   appendFilePath: true # to append file path to Edit link
+
+  label:
+    text: "Blog | Sujaykumarh"
+    icon: "/assets/icon.png"
+    iconHeight: 35
+
+  analytics:
+    google:
+      SiteVerificationTag: "G-RDJM8E8822"
+
+  assets:
+    favicon: "/assets/icon.png"
+    favicon16x16: "/assets/icon.png"
+    favicon32x32: "/assets/icon.png"
+    apple_touch_icon: "/assets/icon.png"
+    safari_pinned_tab: "/assets/icon.png"
+
+  # cover:
+  #     hidden: true # hide everywhere but not in structured data
+  #     hiddenInList: true # hide on list pages and home
+  #     hiddenInSingle: true # hide on single page
+
+  # fuseOpts:
+  #     isCaseSensitive: false
+  #     shouldSort: true
+  #     location: 0
+  #     distance: 1000
+  #     threshold: 0.4
+  #     minMatchCharLength: 0
+  #     keys: ["title", "permalink", "summary", "content"]
+
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+#     highlight:
+#         # anchorLineNos: true
+#         codeFences: true
+#         guessSyntax: true
+#         lineNos: true
+#         # noClasses: false
+#         style: monokai
+
+privacy:
+  vimeo:
+    disabled: false
+    simple: true
+
+  twitter:
+    disabled: false
+    enableDNT: true
+    simple: true
+
+  instagram:
+    disabled: false
+    simple: true
+
+  youtube:
+    disabled: false
+    privacyEnhanced: true
+
+services:
+  instagram:
+    disableInlineCSS: true
+  twitter:
+    disableInlineCSS: true

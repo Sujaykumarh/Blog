@@ -1,0 +1,52 @@
+version: '3'
+
+networks:
+  blog_net:
+    driver: bridge
+
+
+services:
+
+  ## hugo service to run hugo commands
+  hugo:
+    image: klakegg/hugo:${DK_HUGO_VER:-ext-alpine}
+    container_name: ${CONTAINER_NAME:-blog}_hugo
+    user: ${CURRENT_USER:-1000:1000}
+    command: help
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ${SRC_DIR:-./src}:/src
+      - ${CONTENT_DIR:-./content}:/src/content:ro
+
+  ## hugo live server
+  server:
+    image: klakegg/hugo:${DK_HUGO_VER:-ext-alpine}
+    container_name: ${CONTAINER_NAME:-blog}_server
+    user: ${CURRENT_USER:-1000:1000}
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    command: ["server", "--watch", "--port", "${HUGO_PORT:-1312}", "--liveReloadPort", "${HUGO_PORT:-1312}", "-D"]
+    volumes:
+      - ${SRC_DIR:-./src}:/src
+      - ${CONTENT_DIR:-./content}:/src/content:ro
+    networks: 
+      - blog_net
+    ports:
+      - ${HUGO_PORT:-1312}:${HUGO_PORT:-1312}
+
+
+  ## nginx service to test hugo build
+  nginx:
+    image: nginx:${DK_NGINX_VER:-stable-alpine}
+    container_name: ack_website_nginx
+    restart: unless-stopped
+    volumes:
+      - ${DIST_DIR:-./src/dist}:/usr/share/nginx/html:ro
+    ports:
+      - ${NGINX_PORT:-8085}:80
+    networks:
+      - blog_net
+    security_opt:
+      - no-new-privileges:true
