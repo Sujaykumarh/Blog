@@ -43,8 +43,8 @@ jobs:
       - name: ℹ️ Setup files in dist
         run: |
           cp README.md dist/dist-readme.md
-          touch src/dist/.nojekyll
-          if [ -f "CNAME" ]; then cp CNAME src/dist/CNAME; fi
+          touch dist/.nojekyll
+          if [ -f "CNAME" ]; then cp CNAME dist/CNAME; fi
 
       - name: 🚀 Push to gh-pages
         uses: s0/git-publish-subdir-action@develop
