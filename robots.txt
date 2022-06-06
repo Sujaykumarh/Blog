@@ -11,15 +11,10 @@
 #   (  V  ) reCaptcha (  V  )
 #   --m-m---------------m-m--
 
+# block all robots
 User-agent: *
-Allow: /
+Disallow: /
 
-Disallow: /assets/
-Disallow: /design/
-Disallow: /portfolio/
-Disallow: /work/
-Disallow: /feed.xml
-Disallow: /privacy.html
-Disallow: /terms.html
-
-Sitemap: https://blog.sujaykumarh.com/sitemap.xml
+# block wayback machine
+User-agent: ia_archiver
+Disallow: /
