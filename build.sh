@@ -33,6 +33,10 @@ if [ -d "./src/dist/page" ]; then
   rm -rf ./src/dist/page
 fi
 
+if [ -f "./src/dist/sitemap.xml" ]; then
+  rm -rf ./src/dist/sitemap.xml
+fi
+
 if [ -d "./src/dist/posts/page" ]; then
   rm -rf ./src/dist/posts/page
 fi
